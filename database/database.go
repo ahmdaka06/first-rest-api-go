@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 	"first-rest-api-go/config"
-	"first-rest-api-go/models"
+	"first-rest-api-go/model"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -35,7 +35,7 @@ func InitDB() {
 	fmt.Println("Database connected successfully!")
 
 	// **Auto Migrate Models**
-	err = DB.AutoMigrate(&models.User{}) // Tambahkan model lain jika perlu
+	err = DB.AutoMigrate(&model.User{}) // Tambahkan model lain jika perlu
 	if err != nil {
 		log.Fatal("Failed to migrate database:", err)
 	}

@@ -15,7 +15,7 @@ type UserClaims struct {
 	jwt.RegisteredClaims
 }
 
-func GenerateJWT(userId uint,email string) (string, error) {
+func GenerateJWT(userId uint, email string) (string, error) {
 	// Mengatur waktu kedaluwarsa token, di sini kita set 60 menit dari waktu sekarang
 	expirationTime := time.Now().Add(60 * time.Minute)
 

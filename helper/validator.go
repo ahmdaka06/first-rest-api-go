@@ -3,7 +3,6 @@ package helper
 import (
 	"fmt"
 	"strings"
-
 	"github.com/go-playground/validator/v10" 
 	"gorm.io/gorm"                           
 )
@@ -18,21 +17,21 @@ func TranslateErrorMessage(err error) map[string]string {
 		for _, fieldError := range validationErrors {
 			field := fieldError.Field() // Menyimpan nama field yang gagal validasi
 			switch fieldError.Tag() {   // Menangani berbagai jenis validasi
-			case "required":
-				errorsMap[field] = fmt.Sprintf("%s is required", field) // Pesan error jika field kosong
-			case "email":
-				errorsMap[field] = "Invalid email format" // Pesan error jika format email tidak valid
-			case "unique":
-				errorsMap[field] = fmt.Sprintf("%s already exists", field) // Pesan error jika data sudah ada
-			case "min":
-				errorsMap[field] = fmt.Sprintf("%s must be at least %s characters", field, fieldError.Param()) // Pesan error jika nilai terlalu pendek
-			case "max":
-				errorsMap[field] = fmt.Sprintf("%s must be at most %s characters", field, fieldError.Param()) // Pesan error jika nilai terlalu panjang
-			case "numeric":
-				errorsMap[field] = fmt.Sprintf("%s must be a number", field) // Pesan error jika nilai bukan angka
-			default:
-				errorsMap[field] = "Invalid value" // Pesan error default untuk kesalahan validasi lainnya
-			}
+				case "required":
+					errorsMap[field] = fmt.Sprintf("%s is required", field) // Pesan error jika field kosong
+				case "email":
+					errorsMap[field] = "Invalid email format" // Pesan error jika format email tidak valid
+				case "unique":
+					errorsMap[field] = fmt.Sprintf("%s already exists", field) // Pesan error jika data sudah ada
+				case "min":
+					errorsMap[field] = fmt.Sprintf("%s must be at least %s characters", field, fieldError.Param()) // Pesan error jika nilai terlalu pendek
+				case "max":
+					errorsMap[field] = fmt.Sprintf("%s must be at most %s characters", field, fieldError.Param()) // Pesan error jika nilai terlalu panjang
+				case "numeric":
+					errorsMap[field] = fmt.Sprintf("%s must be a number", field) // Pesan error jika nilai bukan angka
+				default:
+					errorsMap[field] = "Invalid value" // Pesan error default untuk kesalahan validasi lainnya
+				}
 		}
 	}
 

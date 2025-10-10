@@ -2,7 +2,7 @@ package main
 
 import (
 	"first-rest-api-go/config"
-	"github.com/gin-gonic/gin"
+	"first-rest-api-go/routes"
 )
 
 func main() {
@@ -13,18 +13,9 @@ func main() {
 	//init database
 	config.InitDB()
 
-	//init gin
-	router := gin.Default()
-
-	// create route GET /
-	router.GET("/", func(c *gin.Context) {
-
-		//return response JSON
-		c.JSON(200, gin.H{
-			"message": "Hello World!",
-		})
-	})
+	//setup router
+	r := routes.SetupRouter()
 
 	// run server on port .env APP_PORT or 3000
-	router.Run(":" + config.GetEnv("APP_PORT", "3000"))
+	r.Run(":" + config.GetEnv("APP_PORT", "3000"))
 }
